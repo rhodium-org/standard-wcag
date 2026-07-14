@@ -1,9 +1,13 @@
 # standard-wcag
 
-The **Web Content Accessibility Guidelines (WCAG) 2.2** expressed as a
+The **Web Content Accessibility Guidelines (WCAG)** expressed as a
 [throughline](https://pypi.org/project/throughline/) **source** — a standalone, grounded
 requirements graph that a consuming project composes with
 [throughline-compose](https://github.com/rhodium-org/throughline-compose).
+
+Each published WCAG version is a separate **edition on its own branch** (see *Editions are
+branches* below); the live counts and [`docs/spec.md`](docs/spec.md) reflect whichever
+branch you are viewing — `main` is WCAG 2.2.
 
 This repository holds no application code. It is a directory of small YAML items with
 permanent UIDs, validated by `tl check`. Consumers import it under a namespace and
@@ -37,8 +41,9 @@ co-equal root intents** (all `normative: false`):
 | `INT-0003` | **Understandable** — information and operation make sense |
 | `INT-0004` | **Robust** — content survives across user agents and assistive tech |
 
-- Each of WCAG's **13 guidelines** is a `user_requirement` that `derives_from` **its own
-  principle** (not a catch-all), and carries a `rationale` — who it serves and why.
+- Each of WCAG's **guidelines** is a `user_requirement` that `derives_from` **its own
+  principle** (not a catch-all), and carries a `rationale` — who it serves and why (the
+  count is in *Status* above — 13 in 2.1/2.2, 12 in 2.0, which lacks Input Modalities).
 - Each **success criterion** is a `system_requirement` that `implements` its guideline.
   Its `rationale` is the W3C **"Intent of this Success Criterion"** — the leaf-level *why*.
   WCAG's hierarchy is strict (one principle per guideline), so a criterion grounds up to a
