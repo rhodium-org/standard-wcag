@@ -30,6 +30,12 @@ The single criterion removed in 2.2 (4.1.1 Parsing) is kept as a throughline **t
 are git tags of this one repo (v2.2.0, and a future v3.0.0), the same editions-as-tags
 model as standard-asvs.
 
+**Removal is distinguished from supersession.** 4.1.1 was withdrawn *without* a named
+successor, so it is a pure tombstone. A criterion *replaced by a named successor* would
+additionally carry a directional ``superseded_by`` link (SC→SC) recorded in the
+``SUPERSEDED_BY`` map below. WCAG 2.2 has no such case, so the map is empty and the schema
+sits ready — a future edition that supersedes a criterion adds data, not schema.
+
 Usage:  python tools/generate.py   (run tools/fetch_intents.py first if intents are stale)
 """
 from __future__ import annotations
@@ -107,6 +113,14 @@ GUIDELINE_RATIONALE = {
 
 VERSION_ORDER = {"2.0": 0, "2.1": 1, "2.2": 2}
 
+# Removal is not supersession. A criterion *withdrawn without a named replacement* is a
+# pure tombstone (wcag_removed attr only) — that is 4.1.1 Parsing, obsoleted in 2.2. A
+# criterion *replaced by a named successor* additionally gets a directional
+# `superseded_by` edge to the SC that replaces it. WCAG 2.2 has no such case, so this map
+# is empty; a future edition that genuinely supersedes a criterion adds one entry
+# ("<old SC num>": ["<new SC num>", ...]) — data, not schema.
+SUPERSEDED_BY: dict[str, list[str]] = {}
+
 
 def strip(html: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", html or "")).strip()
@@ -144,6 +158,15 @@ def generate() -> dict[str, int]:
 
     counts = {"int": 0, "ur": 0, "sr": 0, "tombstone": 0}
 
+    # Pre-allocate every SC's UID in document order *before* emitting any item, so a
+    # `superseded_by` edge can resolve a successor that appears later in the document.
+    for p in WCAG["principles"]:
+        for g in p["guidelines"]:
+            for sc in g["successcriteria"]:
+                num = sc["num"]
+                if num not in sr_ref:
+                    sr_ref[num] = f"SR-{n_sr:04d}"; n_sr += 1; counts["sr"] += 1
+
     for p in WCAG["principles"]:
         pref = f"Principle {p['num']}"
         int_uid = int_ref.get(pref)
@@ -177,14 +200,15 @@ def generate() -> dict[str, int]:
 
             for sc in g["successcriteria"]:
                 num = sc["num"]
-                sr_uid = sr_ref.get(num)
-                if sr_uid is None:
-                    sr_uid = f"SR-{n_sr:04d}"; n_sr += 1; sr_ref[num] = sr_uid; counts["sr"] += 1
+                sr_uid = sr_ref[num]  # pre-allocated above
                 versions = sc["versions"]
                 introduced = min(versions, key=lambda v: VERSION_ORDER[v])
                 removed = "2.2" not in versions  # only 4.1.1 Parsing
                 level = sc["level"] or "A"       # 4.1.1 was Level A before removal
                 attrs = {"source_ref": num, "level": level, "wcag_version": introduced}
+                links = [{"target": ur_uid, "type": "implements"}]
+                for succ in SUPERSEDED_BY.get(num, []):
+                    links.append({"target": sr_ref[succ], "type": "superseded_by"})
                 item = {
                     "uid": sr_uid,
                     "type": "system_requirement",
@@ -192,7 +216,7 @@ def generate() -> dict[str, int]:
                     "title": f"{sc['handle']} ({level})",
                     "text": strip(sc["content"]) or strip(sc["title"]),
                     "rationale": INTENTS.get(num, ""),
-                    "links": [{"target": ur_uid, "type": "implements"}],
+                    "links": links,
                     "attrs": attrs,
                 }
                 if removed:

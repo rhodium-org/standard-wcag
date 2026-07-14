@@ -32,13 +32,22 @@ attrs.source_ref = { required = true }
 attrs.source_ref = { required = true }
 attrs.level = { required = true, values = ["A", "AA", "AAA"] }
 attrs.wcag_version = { required = true, values = ["2.0", "2.1", "2.2"] }
+# wcag_removed = the version that withdrew the criterion, making it a tombstone
+# (status: deleted). Present-in(V) iff wcag_version <= V < wcag_removed. Only
+# 4.1.1 Parsing carries it (removed in 2.2). Removal is not supersession: a
+# withdrawn criterion with a *named* successor instead gets a `superseded_by` link.
+attrs.wcag_removed = { required = false, values = ["2.2"] }
 
 [links]
-types = ["derives_from", "implements", "relates"]
+types = ["derives_from", "implements", "relates", "superseded_by"]
 
 [link_rules]
 derives_from = { from = ["user_requirement"], to = ["intent"] }
 implements   = { from = ["system_requirement"], to = ["user_requirement"] }
+# superseded_by points a withdrawn criterion at the criterion that replaces it —
+# directional SC→SC. Unused today (4.1.1 was removed without a named successor);
+# wired so a future edition where a criterion is genuinely replaced needs data, not schema.
+superseded_by = { from = ["system_requirement"], to = ["system_requirement"] }
 
 [status]
 values = ["proposed", "draft", "deferred", "approved", "ratified", "implemented",

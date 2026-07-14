@@ -53,9 +53,20 @@ three versions at once** — you don't fork the repo or duplicate criteria per v
   `2.2`). Filter `wcag_version in {2.0, 2.1}` to get "the WCAG 2.1 set".
 - `attrs.level` — the conformance grade (`A` / `AA` / `AAA`).
 - `attrs.source_ref` — the published WCAG number (`1.4.3`), never the UID.
+- `attrs.wcag_removed` — a **declared, validated** attribute (optional, values `{2.2}`)
+  naming the version that **withdrew** the criterion. A criterion is present in version `V`
+  exactly when `wcag_version ≤ V < wcag_removed`.
 - The one criterion removed in 2.2 — **4.1.1 Parsing** — is kept as a throughline
   **tombstone** (`status: deleted`, `attrs.wcag_removed: "2.2"`), never dropped, so UID
   history stays intact.
+
+**Removed is not the same as superseded.** 4.1.1 was *withdrawn without a named successor*,
+so it is a pure tombstone. When a future edition **replaces** a criterion with a named one,
+the withdrawn criterion also carries a directional `superseded_by` link (`system_requirement`
+→ `system_requirement`) pointing at its replacement — the *why* survives the swap. That link
+type and its endpoint rule are declared in `throughline.toml`; WCAG 2.2 has no such case, so
+no `superseded_by` edge exists yet (the generator's `SUPERSEDED_BY` map is empty). The
+schema is ready, so a real supersede is a data change, not a schema change.
 
 **Editions are git tags of this one repo.** `v2.2.0` tags the WCAG 2.2 edition; a future
 WCAG 3.0 (a different model) would be `v3.0.0` on this same repo. A consumer pins
