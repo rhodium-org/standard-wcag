@@ -1,11 +1,11 @@
-# WCAG 2.1 — throughline source
+# WCAG 2.0 — throughline source
 
 Generated from the graph. Prose between `tl:item` / `tl:table` markers is injected by
 `tl docs` — edit the YAML items (or `tools/wcag-2.2.json` + `tools/generate.py`), not the
 injected regions.
 
-This branch is the **complete WCAG 2.1 edition** — every Success Criterion that
-version publishes, and nothing else. WCAG 2.1 incorporates criteria first introduced
+This branch is the **complete WCAG 2.0 edition** — every Success Criterion that
+version publishes, and nothing else. WCAG 2.0 incorporates criteria first introduced
 in earlier versions, but it is a whole standard in its own right (as ASVS v5.0.0 is): a
 consumer selects it by pinning this ref, not by filtering a version attribute. Other WCAG
 versions live on their own branches (`main` = 2.2, `release/2.1`, `release/2.0`).
@@ -116,9 +116,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0011 | system_requirement | approved | Info and Relationships (A) |
 | SR-0012 | system_requirement | approved | Meaningful Sequence (A) |
 | SR-0013 | system_requirement | approved | Sensory Characteristics (A) |
-| SR-0014 | system_requirement | approved | Orientation (AA) |
-| SR-0015 | system_requirement | approved | Identify Input Purpose (AA) |
-| SR-0016 | system_requirement | approved | Identify Purpose (AAA) |
 <!-- tl:end -->
 
 ## 1.4 Distinguishable
@@ -145,10 +142,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0023 | system_requirement | approved | Low or No Background Audio (AAA) |
 | SR-0024 | system_requirement | approved | Visual Presentation (AAA) |
 | SR-0025 | system_requirement | approved | Images of Text (No Exception) (AAA) |
-| SR-0026 | system_requirement | approved | Reflow (AA) |
-| SR-0027 | system_requirement | approved | Non-text Contrast (AA) |
-| SR-0028 | system_requirement | approved | Text Spacing (AA) |
-| SR-0029 | system_requirement | approved | Content on Hover or Focus (AA) |
 <!-- tl:end -->
 
 # Principle 2: Operable
@@ -171,7 +164,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0030 | system_requirement | approved | Keyboard (A) |
 | SR-0031 | system_requirement | approved | No Keyboard Trap (A) |
 | SR-0032 | system_requirement | approved | Keyboard (No Exception) (AAA) |
-| SR-0033 | system_requirement | approved | Character Key Shortcuts (A) |
 <!-- tl:end -->
 
 ## 2.2 Enough Time
@@ -194,7 +186,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0036 | system_requirement | approved | No Timing (AAA) |
 | SR-0037 | system_requirement | approved | Interruptions (AAA) |
 | SR-0038 | system_requirement | approved | Re-authenticating (AAA) |
-| SR-0039 | system_requirement | approved | Timeouts (AAA) |
 <!-- tl:end -->
 
 ## 2.3 Seizures and Physical Reactions
@@ -214,7 +205,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 |---|---|---|---|
 | SR-0040 | system_requirement | approved | Three Flashes or Below Threshold (A) |
 | SR-0041 | system_requirement | approved | Three Flashes (AAA) |
-| SR-0042 | system_requirement | approved | Animation from Interactions (AAA) |
 <!-- tl:end -->
 
 ## 2.4 Navigable
@@ -242,29 +232,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0050 | system_requirement | approved | Location (AAA) |
 | SR-0051 | system_requirement | approved | Link Purpose (Link Only) (AAA) |
 | SR-0052 | system_requirement | approved | Section Headings (AAA) |
-<!-- tl:end -->
-
-## 2.5 Input Modalities
-
-<!-- tl:item UR-0009 -->
-**UR-0009 — Input Modalities — Make it easier for users to operate functionality through various inputs beyond keyboard.** — `user_requirement`, status `approved`
-
-> Make it easier for users to operate functionality through various inputs beyond keyboard.
-
-*Rationale:* People operate devices in many ways beyond a keyboard — touch, pointer, voice, motion — and each must work without requiring precise or tiring gestures.
-
-**source_ref**: 2.5
-<!-- tl:end -->
-
-<!-- tl:table type == 'system_requirement' and attrs.get('source_ref').startswith('2.5.') -->
-| UID | Type | Status | Title |
-|---|---|---|---|
-| SR-0056 | system_requirement | approved | Pointer Gestures (A) |
-| SR-0057 | system_requirement | approved | Pointer Cancellation (A) |
-| SR-0058 | system_requirement | approved | Label in Name (A) |
-| SR-0059 | system_requirement | approved | Motion Actuation (A) |
-| SR-0060 | system_requirement | approved | Target Size (Enhanced) (AAA) |
-| SR-0061 | system_requirement | approved | Concurrent Input Mechanisms (AAA) |
 <!-- tl:end -->
 
 # Principle 3: Understandable
@@ -355,7 +322,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | UID | Type | Status | Title |
 |---|---|---|---|
 | SR-0086 | system_requirement | approved | Name, Role, Value (A) |
-| SR-0087 | system_requirement | approved | Status Messages (AA) |
 | SR-0088 | system_requirement | approved | Parsing (Obsolete and removed) (A) |
 <!-- tl:end -->
 
