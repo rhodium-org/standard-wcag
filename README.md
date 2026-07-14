@@ -1,9 +1,13 @@
 # standard-wcag
 
-The **Web Content Accessibility Guidelines (WCAG) 2.2** expressed as a
+The **Web Content Accessibility Guidelines (WCAG)** expressed as a
 [throughline](https://pypi.org/project/throughline/) **source** — a standalone, grounded
 requirements graph that a consuming project composes with
 [throughline-compose](https://github.com/rhodium-org/throughline-compose).
+
+Each published WCAG version is a separate **edition on its own branch** (see *Editions are
+branches* below); the live counts and [`docs/spec.md`](docs/spec.md) reflect whichever
+branch you are viewing — `main` is WCAG 2.2.
 
 This repository holds no application code. It is a directory of small YAML items with
 permanent UIDs, validated by `tl check`. Consumers import it under a namespace and
@@ -19,7 +23,7 @@ A grounded graph of
 13
 <!-- tl:end --> guideline requirements and
 <!-- tl:count type == 'system_requirement' -->
-86
+78
 <!-- tl:end --> success criteria, published to [`docs/spec.md`](docs/spec.md). The counts
 are rendered from the live graph by `tl:count`, so they cannot drift.
 

@@ -1,11 +1,11 @@
-# WCAG 2.2 — throughline source
+# WCAG 2.1 — throughline source
 
 Generated from the graph. Prose between `tl:item` / `tl:table` markers is injected by
 `tl docs` — edit the YAML items (or `tools/wcag-2.2.json` + `tools/generate.py`), not the
 injected regions.
 
-This branch is the **complete WCAG 2.2 edition** — every Success Criterion that
-version publishes, and nothing else. WCAG 2.2 incorporates criteria first introduced
+This branch is the **complete WCAG 2.1 edition** — every Success Criterion that
+version publishes, and nothing else. WCAG 2.1 incorporates criteria first introduced
 in earlier versions, but it is a whole standard in its own right (as ASVS v5.0.0 is): a
 consumer selects it by pinning this ref, not by filtering a version attribute. Other WCAG
 versions live on their own branches (`main` = 2.2, `release/2.1`, `release/2.0`).
@@ -242,9 +242,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0050 | system_requirement | approved | Location (AAA) |
 | SR-0051 | system_requirement | approved | Link Purpose (Link Only) (AAA) |
 | SR-0052 | system_requirement | approved | Section Headings (AAA) |
-| SR-0053 | system_requirement | approved | Focus Not Obscured (Minimum) (AA) |
-| SR-0054 | system_requirement | approved | Focus Not Obscured (Enhanced) (AAA) |
-| SR-0055 | system_requirement | approved | Focus Appearance (AAA) |
 <!-- tl:end -->
 
 ## 2.5 Input Modalities
@@ -268,8 +265,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0059 | system_requirement | approved | Motion Actuation (A) |
 | SR-0060 | system_requirement | approved | Target Size (Enhanced) (AAA) |
 | SR-0061 | system_requirement | approved | Concurrent Input Mechanisms (AAA) |
-| SR-0062 | system_requirement | approved | Dragging Movements (AA) |
-| SR-0063 | system_requirement | approved | Target Size (Minimum) (AA) |
 <!-- tl:end -->
 
 # Principle 3: Understandable
@@ -317,7 +312,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0072 | system_requirement | approved | Consistent Navigation (AA) |
 | SR-0073 | system_requirement | approved | Consistent Identification (AA) |
 | SR-0074 | system_requirement | approved | Change on Request (AAA) |
-| SR-0075 | system_requirement | approved | Consistent Help (A) |
 <!-- tl:end -->
 
 ## 3.3 Input Assistance
@@ -341,9 +335,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 | SR-0079 | system_requirement | approved | Error Prevention (Legal, Financial, Data) (AA) |
 | SR-0080 | system_requirement | approved | Help (AAA) |
 | SR-0081 | system_requirement | approved | Error Prevention (All) (AAA) |
-| SR-0082 | system_requirement | approved | Redundant Entry (A) |
-| SR-0083 | system_requirement | approved | Accessible Authentication (Minimum) (AA) |
-| SR-0084 | system_requirement | approved | Accessible Authentication (Enhanced) (AAA) |
 <!-- tl:end -->
 
 # Principle 4: Robust
@@ -365,5 +356,6 @@ criterion in `attrs.wcag_version` — provenance only, never a selector.
 |---|---|---|---|
 | SR-0086 | system_requirement | approved | Name, Role, Value (A) |
 | SR-0087 | system_requirement | approved | Status Messages (AA) |
+| SR-0088 | system_requirement | approved | Parsing (Obsolete and removed) (A) |
 <!-- tl:end -->
 
