@@ -41,8 +41,9 @@ co-equal root intents** (all `normative: false`):
 | `INT-0003` | **Understandable** — information and operation make sense |
 | `INT-0004` | **Robust** — content survives across user agents and assistive tech |
 
-- Each of WCAG's **13 guidelines** is a `user_requirement` that `derives_from` **its own
-  principle** (not a catch-all), and carries a `rationale` — who it serves and why.
+- Each of WCAG's **guidelines** is a `user_requirement` that `derives_from` **its own
+  principle** (not a catch-all), and carries a `rationale` — who it serves and why (the
+  count is in *Status* above — 13 in 2.1/2.2, 12 in 2.0, which lacks Input Modalities).
 - Each **success criterion** is a `system_requirement` that `implements` its guideline.
   Its `rationale` is the W3C **"Intent of this Success Criterion"** — the leaf-level *why*.
   WCAG's hierarchy is strict (one principle per guideline), so a criterion grounds up to a
